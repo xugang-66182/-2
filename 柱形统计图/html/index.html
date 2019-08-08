@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var canvas = document.createElement('canvas');
+        canvas.width = 500;
+        canvas.height = 500;
+        canvas.style.border = '1px solid #ccc';
+        document.body.appendChild(canvas);
+        var cc = canvas.getContext('2d');
+
+        var data = [
+            {
+                name: 'ha1',
+                age: 400,
+            },
+            {
+                name: 'ha2',
+                age: 60,
+            },
+            {
+                name: 'ha3',
+                age: 100,
+            },
+            {
+                name: 'ha4',
+                age: 80,
+            },
+        ];
+
+        var colorArr = [];
+        var newArr = JSON.parse(JSON.stringify(data));
+        var max = newArr.sort(function (a, b) {
+            return b.age - a.age;
+        })[0].age;
+
+        //数组每一项所占总长度的距离
+        var margin = 400 / (data.length + 1);
+        cc.translate(50, 450);
+        function sum() {
+            for (var i = 0; i < data.length; i++) {
+                colorArr.push(color());
+            }
+            function color() {
+                return `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`;
+            }
+
+            //X
+            cc.save();
+            cc.beginPath();
+            cc.moveTo(0, 0);
+            cc.lineTo(0, -max);
+            cc.stroke();
+            cc.restore();
+            //Y
+            cc.save();
+            cc.beginPath();
+            cc.moveTo(0, 0);
+            cc.lineTo(400, 0);
+            cc.stroke();
+            cc.restore();
+
+
+
+            //X坐标
+            for (var i = 50; i <= max; i += 50) {
+                cc.save();
+                cc.textAlign = 'center';
+                cc.textBaseline = 'middle';
+                cc.beginPath();
+                // cc.strokeStyle = 'rgba(0,0,0,.2)'
+                cc.moveTo(-4, -i);
+                cc.lineTo(400, -i);
+                cc.fillText(i, -20, -i);
+                cc.stroke();
+                cc.restore();
+            }
+
+            //Yname
+            for (var i = 0; i < data.length; i++) {
+                cc.save();
+                cc.beginPath();
+                cc.textAlign = 'center';
+                cc.textBaseline = 'middle';
+                cc.fillText(data[i].name, margin * (i + 1), 20);
+                cc.restore();
+            }
+
+
+        }
+        sum();
+
+        function tu(e) {
+            for (var i = 0; i < data.length; i++) {
+                cc.save();
+                cc.fillStyle = colorArr[i];
+                cc.beginPath();
+                cc.fillRect(margin * (i + 1) - 15, 0, 30, -data[i].age);
+                // if (e && cc.isPointInPath(e.offsetX, e.offsetY)) {
+                //     cc.fillStyle = 'red';
+                //     cc.fillRect(margin * (i + 1) - 15, i, 30, -data[i].age);
+                //     console.log(2);
+                // }
+                if(e && cc.isPointInPath(e.offsetX,e.offsetY)){
+                    console.log(2);
+                }
+                cc.fill();
+                cc.restore();
+            }
+        }
+        tu();
+
+
+        canvas.addEventListener('mousemove', function (e) {
+            cc.clearRect(-50, -450, 500, 500);
+            sum();
+            tu(e);
+            console.log(e);
+        });
+
+
+    </script>
+</body>
+
+</html>
