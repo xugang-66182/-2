@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var canvas = document.createElement('canvas');
+        canvas.width = 500;
+        canvas.height = 500;
+        canvas.style.border = '1px solid #ccc';
+        document.body.appendChild(canvas);
+
+        var cc = canvas.getContext('2d');
+        cc.beginPath();
+        cc.fillStyle = '#fffe54';
+        cc.arc(250, 250, 150, 0, -Math.PI * 360);
+        cc.fill();
+        function doudou() {
+            cc.beginPath();
+            cc.fillStyle = '#fff';
+            cc.arc(310, 186, 15, 0, -Math.PI * 360);
+            cc.fill();
+
+            cc.beginPath();
+            cc.fillStyle = '#000';
+            cc.arc(318, 192, 6, 0, -Math.PI * 360);
+            cc.fill();
+
+            cc.beginPath();
+            cc.fillStyle = '#96969d';
+            cc.fillRect(202, 104, 6, 42);
+            cc.fill();
+            cc.beginPath();
+            cc.fillStyle = '#96969d';
+            cc.fillRect(217, 104, 6, 42);
+            cc.fill();
+            cc.beginPath();
+            cc.fillStyle = '#96969d';
+            cc.fillRect(232, 104, 6, 42);
+            cc.fill();
+            cc.beginPath();
+            cc.fillStyle = '#96969d';
+            cc.fillRect(247, 104, 6, 42);
+            cc.fill();
+            cc.beginPath();
+            cc.fillStyle = '#96969d';
+            cc.fillRect(262, 104, 6, 42);
+            cc.fill();
+            cc.beginPath();
+            cc.fillStyle = '#96969d';
+            cc.fillRect(277, 104, 6, 42);
+            cc.fill();
+
+            cc.beginPath();
+            cc.fillStyle = '#fff';
+            cc.moveTo(250, 250);
+            cc.lineTo(410, 250);
+            cc.lineTo(410, 220);
+            cc.closePath();
+            cc.fill();
+        }
+        doudou();
+
+    </script>
+</body>
+
+</html>
