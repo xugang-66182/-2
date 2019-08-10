@@ -67,6 +67,68 @@
         }
         doudou();
 
+
+
+        var canvas = document.createElement('canvas');
+        canvas.width = 500;
+        canvas.height = 500;
+        canvas.style.border = '1px solid #ccc';
+        document.body.appendChild(canvas);
+
+        var cc = canvas.getContext('2d');
+
+        var data = [
+            { value: 335, name: '直接访问', color: "rgb(213, 58, 53)" },
+            { value: 310, name: '邮件营销', color: "rgb(51, 75, 92)" },
+            { value: 234, name: '联盟广告', color: "rgb(106, 176, 184)" },
+            { value: 135, name: '视频广告', color: "rgb(233, 143, 111)" },
+            { value: 1548, name: '搜索引擎', color: "rgb(145, 199, 174)" }
+        ];
+
+        var sum = 0;
+        var du = [];
+        for (var i in data) {
+            sum += data[i].value;
+
+            cc.save();
+            cc.fillStyle = data[i].color;
+            cc.beginPath();
+            cc.fillRect(6,(i+1)*2,16,10);
+            cc.fillText(data[i].name,30,(i+5)*2);
+            cc.fill();
+            cc.restore();
+        }
+
+        for (var i in data) {
+            var ev = data[i].value;
+            du.push(ev / sum * 360)
+        }
+
+
+        //定义一个°的单位
+        var o = Math.PI / 180;
+
+        //定义一个初始为0的开始点；
+        var st = 0;
+
+        //for循环写入每一项数据的°和颜色
+        for (var i = 0; i < du.length; i++) {
+            cc.save();
+            cc.beginPath();
+            cc.fillStyle = data[i].color;  //调用定义好的随机颜色
+            cc.moveTo(250, 250);
+            cc.arc(250, 250, 130, st * o, (st + du[i]) * o);
+            cc.closePath();
+
+            st += du[i];  //把每一个的结束位置赋值给下一个的开始位置
+            cc.fill();
+            cc.restore();
+        };
+
+        cc.beginPath();
+        cc.fillStyle = '#fff';
+        cc.arc(250, 250, 90, 0, Math.PI * 360);
+        cc.fill();
     </script>
 </body>
 
