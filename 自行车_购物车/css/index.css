@@ -257,6 +257,10 @@ body,
   border-top: 0.02667rem solid #e6e6e6;
 }
 
+#app .jiesuan .aa {
+  background-color: #ffcb05;
+}
+
 #app .jiesuan > span {
   float: left;
   display: block;

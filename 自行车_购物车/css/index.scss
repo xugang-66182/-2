@@ -232,6 +232,7 @@ body,
             }
 
             .zongjia {
+                
                 width: 98%;
                 margin: px2rem(10) auto;
                 height: px2rem(100);
@@ -263,6 +264,9 @@ body,
         background-color: #ffffff;
         border-top: px2rem(2) solid #e6e6e6;
 
+        .aa {
+            background-color: #ffcb05;
+        }
         &>span {
             float: left;
             display: block;

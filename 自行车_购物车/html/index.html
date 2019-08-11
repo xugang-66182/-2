@@ -104,6 +104,7 @@
         var input = document.getElementsByClassName('input');
         var che = document.getElementsByClassName('che');
         var allche = document.getElementsByClassName('allche')[0];
+        var allche1 = document.getElementsByClassName('allche')[1];
         var gwc = document.getElementsByClassName('gwc');
         var cha = document.getElementsByClassName('cha');
         //module1渲染
@@ -158,6 +159,7 @@
                     var bool = che[i].classList.contains('active');
                     data.top[i].ischecked = bool;
                     ische() ? allche.classList.add('aa') : allche.classList.remove('aa');
+                    ische() ? allche1.classList.add('aa') : allche1.classList.remove('aa');
                     allnum();
                 }
 
@@ -166,6 +168,7 @@
             //全选的选中
             allche.onclick = function () {
                 allche.classList.toggle('aa');
+                allche1.classList.toggle('aa');
                 var zhe = allche.classList.contains('aa');
                 for (var i = 0; i < che.length; i++) {
                     zhe ? che[i].classList.add('active') : che[i].classList.remove('active');
@@ -175,6 +178,17 @@
 
             }
 
+            allche1.onclick = function () {
+                allche1.classList.toggle('aa');
+                allche.classList.toggle('aa');
+                var zhe = allche1.classList.contains('aa');
+                for (var i = 0; i < che.length; i++) {
+                    zhe ? che[i].classList.add('active') : che[i].classList.remove('active');
+                    data.top[i].ischecked = zhe;
+                }
+                allnum();
+
+            }
 
             //判断数据中的ischecked是否都为true
             function ische() {
