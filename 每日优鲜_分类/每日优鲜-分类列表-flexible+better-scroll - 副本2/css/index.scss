@@ -1,0 +1,308 @@
+
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-weight: normal;
+}
+
+$com-color: #FF4891;
+$com-gray: #969696;
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: px2rem(100);
+    background-color: #000;
+}
+
+footer {
+
+    height: px2rem(100);
+    padding-top: px2rem(10);
+    box-sizing: border-box;
+    // background-color: #000;
+    border-top: 1px solid #CCC;
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+
+    >div {
+        flex: 1;
+        position: relative;
+        >div {
+            span {
+                font-size: px2rem(24);
+            }
+
+            img {
+                display: block;
+                width: px2rem(50);
+                margin: 0 auto;
+
+                &:last-child {
+                    display: none;
+                }
+            }
+        }
+        #shopcar-num-tip {
+            display: none;
+            position: absolute;
+            right: px2rem(28);
+            top: px2rem(-4);
+           
+            min-width: 1.2em;
+            height: 1.2em;
+            line-height: 1.2em;
+            border: 1px solid #FFF;
+            border-radius: 100%;
+            background-color: $com-color;
+            // font-weight: bold;
+            text-align: center;
+            color: #FFF;
+        }
+        .active {
+            img {
+                display: none;
+                &:last-child {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+section {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+
+    .r-content {
+        display: flex;
+        flex-direction: column;
+
+        .content-list {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+        }
+    }
+}
+
+.l-menu {
+    flex: 1;
+    background-color: #F8F8F8;
+
+    .menus {
+        position: relative;
+        height: 100%;
+
+        >div:first-child {
+            min-height: 100.1%;
+        }
+
+        .bscroll-vertical-scrollbar {
+            width: 5px !important;
+        }
+
+        ul {
+            line-height: px2rem(72);
+            font-size: px2rem(28);
+            text-align: center;
+
+            .current {
+                position: relative;
+                background-color: #FFF;
+                color: #474245;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    // margin-top: px2rem(-15);
+                    transform: translateY(-50%);
+
+
+                    // 第三种
+                    // top: calc(50% - px2rem(15));
+                    width: px2rem(8);
+                    height: px2rem(30);
+                    background-color: $com-color;
+                }
+            }
+        }
+    }
+}
+
+.r-content {
+    flex: 4;
+
+    // 顶部导航+ tab切换
+    .menu-tab {
+        display: flex;
+
+        .menu-con {
+            flex: 5;
+            position: relative;
+            height: px2rem(72);
+            line-height: px2rem(72);
+            overflow: hidden;
+
+            >div:first-child {
+                position: absolute;
+
+                ul {
+                    display: flex;
+
+                    li {
+                        min-width: px2rem(130);
+                        flex-shrink: 0;
+                        text-align: center;
+                        font-size: px2rem(24);
+                    }
+
+                    .current {
+                        color: $com-color;
+                    }
+                }
+            }
+
+            .bscroll-horizontal-scrollbar {
+                height: 5px !important;
+            }
+        }
+
+        .tab-con {
+            flex: 1;
+        }
+    }
+
+    .content-list {
+        padding-right: px2rem(15);
+        padding-left: px2rem(15);
+
+        .class-item {
+
+            .item-title {
+                padding-left: px2rem(15);
+                height: px2rem(80);
+                line-height: px2rem(80);
+                font-size: px2rem(24);
+                color: $com-gray;
+                border-bottom: 1px solid #ccc;
+
+
+            }
+
+            .product-list>dl {
+                padding: px2rem(35) 0;
+                display: flex;
+                border-bottom: 1px solid #ccc;
+
+                dt {
+                    width: px2rem(190);
+                    height: px2rem(190);
+
+                    img {
+                        display: block;
+                        width: 100%;
+                    }
+                }
+
+                dd {
+                    position: relative;
+                    padding-left: px2rem(36);
+                    flex: 1;
+
+                    .procuct-title {
+                        font-size: px2rem(28);
+                        line-height: px2rem(28);
+                        @include single-line();
+                    }
+
+                    .procuct-subtitle {
+                        font-size: px2rem(24);
+                        line-height: px2rem(24);
+                        margin-top: px2rem(15);
+                        margin-bottom: px2rem(22);
+                        color: $com-gray;
+
+                    }
+
+                    .price-area {
+                        .sub-price {
+                            margin-bottom: px2rem(10);
+                            color: $com-color;
+                            font-size: px2rem(20);
+                            font-weight: bold;
+
+
+                        }
+
+                        .main-price {
+                            color: $com-gray;
+                            font-weight: bold;
+                            font-size: px2rem(26);
+                        }
+                    }
+
+                    .product-ctrl {
+                        position: absolute;
+                        right: px2rem(20);
+                        bottom: px2rem(20);
+                        width: px2rem(120);
+                      
+                        height: px2rem(40);
+
+                        .com-btn {
+                            width: px2rem(40);
+                            height: px2rem(40);
+
+                            img {
+                                width: 100%;
+                                display: block;
+                            }
+                        }
+
+                        .product-num {
+                            line-height: px2rem(40);
+                            padding: 0 px2rem(20);
+                            font-size: px2rem(26);
+
+                        }
+
+                        .num-con {
+                            display: flex;
+                            display: none;
+                        }
+
+                        .show-num {
+                            display: flex;
+                        }
+
+                        .hide-btn {
+                            display: none;
+                        }
+
+                        .main-car {
+                            position: absolute;
+                            right: 0;
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

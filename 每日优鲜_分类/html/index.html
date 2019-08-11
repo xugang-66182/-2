@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../fonts1/iconfont.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+        var timer = null;
+        window.onresize = function () {
+            if (timer) {
+                timer = null;
+            }
+            timer = setTimeout(function () {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+            }, 200);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <img src="../image/logo_fenlei.png" alt="">
+            <select name="" id="">
+                <option value="">昌平区政府</option>
+                <option value="">北京市政府</option>
+            </select>
+            <form action="">
+                <i class="iconfont icon-fangdajing"></i>
+                <input type="text" placeholder="搜索">
+            </form>
+        </header>
+        <section>
+            <div id="left">
+                <div>
+                    <ul id="uls">
+                    </ul>
+                </div>
+
+            </div>
+            <div id="right">
+                <div id="top">
+                    <ul id="uuls">
+
+                    </ul>
+                </div>
+
+                <div class="bottom">
+                    <div id="bot">
+                        <!-- <div class="topco">
+                            <span>安心蔬菜</span>
+                        </div> -->
+                        <!-- <ul id="buls">
+                        </ul> -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <footer>
+            <ul>
+                <li>
+                    <img src="../image/icon_1.png" alt="">
+                    <span>首页</span>
+                </li>
+                <li>
+                    <img src="../image/icon_2.png" alt="">
+                    <span>分类</span>
+                </li>
+                <li>
+                    <img src="../image/icon_3.png" alt="">
+                    <span>发现</span>
+                </li>
+                <li>
+                    <img src="../image/icon_4.png" alt="">
+                    <span>购物车</span>
+                </li>
+                <li>
+                    <img src="../image/icon_5.png" alt="">
+                    <span>我的</span>
+                </li>
+            </ul>
+        </footer>
+    </div>
+
+
+    <script src="../js/data.js"></script>
+    <script src="../js/bscroll.min.js"></script>
+
+    <script>
+        var bot_divs = document.getElementsByClassName('topco');
+        var uuls_lis = document.getElementsByClassName('uuls_li');
+        var clic = document.getElementsByClassName('clic');
+
+        function $(name) {
+            return document.getElementById(name);
+        }
+        $('uls');
+        $('bot');
+        $('buls');
+
+        var index = 0;
+        rightall(index);
+
+
+        var bsle = new BScroll('#left', {
+            scrollbar: true,
+            click: true,
+        });
+
+        var bsto = new BScroll('#top', {
+            scrollX: true,
+            click: true,
+
+        });
+
+        var bsbo = new BScroll('.bottom', {
+            click: true,
+            probeType: 3
+        })
+
+        bsbo.on('scroll', function(size){
+            // console.log(size)
+            var attarr = aa.filter(function(item){
+                return -size.y >  item;
+            })
+            
+            for(var i = 0; i < uuls.children.length; i++){
+                uuls.children[i].classList.remove('acc');
+            }
+            
+            var innd = attarr.length <= 0 ? 0 : attarr.length;
+            uuls.children[innd].classList.add('acc');
+            bsto.scrollToElement(uuls.children[innd], 500, true, true)
+
+        })
+
+
+        // 渲染左边数据
+        function leftxuan(left, shuju, fn) {
+            let lis = '';
+            for (var i = 0; i < shuju.length; i++) {
+                lis += `
+                    <li class='${ i === 0 ? 'active' : ''}'  data-inde ='${i}'>${shuju[i].name}</li>
+                `
+            }
+            left.innerHTML = lis;
+            fn && fn();
+        }
+        leftxuan(uls, lMenuData, function () {
+            // var bs = new BScroll('#left', {
+            //     scrollbar: true,
+            //     click: true,
+            // });
+            uls.onclick = function (e) {
+                var target = e.target;
+                if (target.nodeName === 'LI') {
+                    for (var i = 0; i < uls.children.length; i++) {
+                        uls.children[i].classList.remove('active');
+                    }
+                    target.classList.add('active');
+                    console.log(target.getAttribute('data-inde'))
+                    if (target.dataset.inde*1 !== index) {
+                        index = target.dataset.inde;
+                        rightall(index);
+                    }
+                }
+            }
+        })
+
+        //渲染右上数据
+        function rigthtopxuan(rit, shuju, fu) {
+            var tlis = '';
+            for (var i = 0; i < shuju.length; i++) {
+                tlis += `
+                    <li data-inde = "${i}" class = 'uuls_li ${ i === 0 ? 'acc' : ''}'>${shuju[i].name}</li>
+                `
+            }
+            rit.innerHTML = tlis;
+            fu && fu();
+        }
+
+
+        //渲染右内容
+        function rightbottomxuan(rib, shuju, fu) {
+            var blis = '';
+            var bblis = '';
+
+            for (var i = 0; i < shuju.length; i++) {
+                blis += `
+                        <div class="topco">
+                            <span>${shuju[i].title}</span>
+                        </div>
+                        `
+                for (var j = 0; j < shuju[i].list.length; j++) {
+                    var shulis = shuju[i].list;
+                    blis += `
+                    <ul>
+                        <li>
+                            <img src="${shulis[j].img}" alt="">
+                            <div class="ri"  id="buls">
+                                <span>${shulis[j].subtitle}</span>
+                                <span>${shulis[j].name}</span>
+                                <span>￥${shulis[j].noVip.price}</span>
+                                <span>￥${shulis[j].vip.price}</span>
+                                <img src="${shulis[j].car}" alt="" class='clic'>
+                                <form class = 'form'>
+                                <button class = 'jian'> - </button>
+                                <input type='text' value='1' id = 'input'>
+                                <button class = 'jia'> + </button>
+                                </form>
+                            </div>
+                        </li>
+                        </ul>
+                            `
+                }
+            }
+            rib.innerHTML = blis;
+            fu && fu();
+        }
+
+        var valu = 0;
+        var form = document.getElementsByClassName('form');
+
+        for(var i = 0; i < clic.length; i++){
+            (function(i){
+                buls[i].addEventListener('click',function(e){
+                    var target = e.target;
+                    if(target.className === 'clic'){
+                        clic[i].style = 'display:none';
+                        form[i].style = 'display:block';
+                    }
+                    if(target.className === 'from'){
+                        form[i].addEventListener('click',function(e){
+                            var targer = e.target;
+                            console.log(target)
+                            if(targer.className === 'jia'){
+                                input.value++;
+                            }
+                        })
+                    }
+                })
+            })(i)
+        }
+        //调用右边内容
+        function rightall(index) {
+            rigthtopxuan(uuls, rConData[index].menuInfo, function () {
+            })
+
+            rightbottomxuan(bot, rConData[index].cellList, function () {
+                aa = Array.from(bot_divs).map(function(item){
+                    return item.offsetTop;
+                })
+                
+            })
+        }
+
+        
+        uuls.addEventListener('click', function (e) {
+            var event = e || window.event;
+            var target = event.target || event.srcElement;
+            if (target.nodeName === 'LI') {
+                console.log(target.dataset.inde);
+                bsto.scrollToElement(target, 500, true, true);
+                bsbo.scrollToElement(bot_divs[target.dataset.inde], 500, true, 0);
+                for(var i = 0; i < uuls_lis.length; i++){
+                        uuls_lis[i].classList.remove('acc');
+                    
+                }
+                target.classList.add('acc');
+            }
+        })
+    </script>
+</body>
+
+</html>
