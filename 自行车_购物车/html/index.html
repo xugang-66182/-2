@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/flexible.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="top">
+                <img src="../image/xz.png" alt="">
+                <span>购物车</span>
+            </div>
+            <div class="bo">
+                <p>
+                    您还没有登录！登陆后购物车的商品将保存至您的账号中
+                </p>
+                <span>
+                    登录
+                </span>
+            </div>
+        </header>
+        <section>
+            <div class="module1">
+                <div class="all">
+                    <span class="allche"></span>
+                </div>
+                <ul id="uls">
+
+                </ul>
+            </div>
+        </section>
+        <div class="jiesuan">
+            <span class="allche"></span>
+            <span>全选</span>
+            <span>合计￥<i id="allmani"></i> (不含运费)</span>
+            <span>
+                结算
+            </span>
+        </div>
+        <footer>
+            <ul>
+                <li>
+                    <img src="../image/icon_1.png" alt="">
+                    <span>首页</span>
+                </li>
+                <li>
+                    <img src="../image/icon_2.png" alt="">
+                    <span>分类</span>
+                </li>
+                <li>
+                    <img src="../image/icon_3.png" alt="">
+                    <span>购物车</span>
+                </li>
+                <li>
+                    <img src="../image/icon_4.png" alt="">
+                    <span>我的</span>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    <script>
+
+        var data = {
+            top: [
+                {
+                    name: "金秋黄 M",
+                    title: "后街",
+                    img: "../image/tu1.png",
+                    newprice: 2499,
+                    num: 1,
+                    ischecked: "true",
+                },
+                {
+                    name: "静蓝 L",
+                    title: "后街Lite",
+                    img: "../image/tu2.png",
+                    newprice: 1899,
+                    num: 1,
+                    ischecked: "true",
+                },
+                {
+                    name: "苹果蓝 均码",
+                    title: "后街 Mini Road",
+                    img: "../image/tu3.png",
+                    newprice: 2999,
+                    num: 1,
+                    ischecked: "true",
+                }
+            ],
+        }
+
+        var uls = document.getElementById('uls');
+        var uuls = document.getElementById('uuls');
+        var jian = document.getElementsByClassName('jian');
+        var jia = document.getElementsByClassName('jia');
+        var input = document.getElementsByClassName('input');
+        var che = document.getElementsByClassName('che');
+        var allche = document.getElementsByClassName('allche')[0];
+        var gwc = document.getElementsByClassName('gwc');
+        var cha = document.getElementsByClassName('cha');
+        //module1渲染
+        function xuan() {
+            for (var i = 0; i < data.top.length; i++) {
+                var html = '';
+                var datop = data.top.map(function (item) {
+                    html += `
+                            <li>
+                                <span class = 'che'></span>
+                                <img src="${item.img}" alt="">
+                                <div class="ri">
+                                    <span>${item.name}</span>
+                                    <span>${item.title}</span>
+                                    <span>${item.newprice}</span>
+                                    <div class='form'>
+                                        <button class='jian'> - </button>
+                                        <input type='text' value='${item.num}' class='input'>
+                                        <button class='jia'> + </button>
+                                    </div>
+                                    <div class='cha'><img src="../image/cha.png" alt=""></div>
+                                </div>
+                            </li>
+                            `
+                });
+                uls.innerHTML = html;
+
+            }
+
+            //加加减减
+            for (let i = 0; i < jia.length; i++) {
+                jia[i].onclick = function () {
+                    input[i].value++;
+                    data.top[i].num = input[i].value;
+                    allnum();
+                }
+                jian[i].onclick = function () {
+                    input[i].value--;
+                    if (input[i].value <= 1) {
+                        input[i].value = 1;
+                    }
+                    data.top[i].num = input[i].value;
+                    allnum();
+                }
+
+            }
+
+            //单选的选中
+            for (let i = 0; i < che.length; i++) {
+                che[i].onclick = function () {
+                    che[i].classList.toggle('active');
+                    var bool = che[i].classList.contains('active');
+                    data.top[i].ischecked = bool;
+                    ische() ? allche.classList.add('aa') : allche.classList.remove('aa');
+                    allnum();
+                }
+
+            }
+
+            //全选的选中
+            allche.onclick = function () {
+                allche.classList.toggle('aa');
+                var zhe = allche.classList.contains('aa');
+                for (var i = 0; i < che.length; i++) {
+                    zhe ? che[i].classList.add('active') : che[i].classList.remove('active');
+                    data.top[i].ischecked = zhe;
+                }
+                allnum();
+
+            }
+
+
+            //判断数据中的ischecked是否都为true
+            function ische() {
+                var iss = data.top.every(function (item) {
+                    return item.ischecked == true;
+                })
+                return iss;
+            }
+            ische();
+
+            //总价格
+            function allnum() {
+                var alnum = 0;
+                for (var i = 0; i < data.top.length; i++) {
+                    if (data.top[i].ischecked) {
+                        alnum += data.top[i].newprice * data.top[i].num;
+                    }
+                }
+                allmani.innerHTML = alnum.toFixed(2);
+            }
+
+        }
+        xuan();
+
+        for (var i = 0; i < cha.length; i++) {
+            (function (i) {
+                cha[i].onclick = function () {
+                    data.top.splice(i,1);
+                    console.log(data.top);
+                    xuan();
+                }
+            })(i)
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

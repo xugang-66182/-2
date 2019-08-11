@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../fonts1/iconfont.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+        var timer = null;
+        window.onresize = function () {
+            if (timer) {
+                timer = null;
+            }
+            timer = setTimeout(function () {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+            }, 200);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <img src="../image/xz.png" alt="">
+            <form action="">
+                <img src="../image/fdj.png" alt="">
+                <input type="text" placeholder="银河GALAXY">
+            </form>            
+        </header>
+        <section>
+            <div class="left">
+                <ul class="uls">
+                </ul>
+            </div>
+            <div class="right">
+                <img src="../image/banner.png" alt="">
+                <div class="top">
+                    <span></span>
+                    <span>产品</span>
+                    <span></span>
+                </div>
+                <ul class="uuls">
+                    <li>
+                        <img src="../image/tu1.png" alt="">
+                        <span>后街</span>
+                        <p>周年纪念版</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <footer>
+            <ul>
+                <li>
+                    <img src="../image/icon_1.png" alt="">
+                    <span>首页</span>
+                </li>
+                <li>
+                    <img src="../image/icon_2.png" alt="">
+                    <span>分类</span>
+                </li>
+                <li>
+                    <img src="../image/icon_3.png" alt="">
+                    <span>购物车</span>
+                </li>
+                <li>
+                    <img src="../image/icon_4.png" alt="">
+                    <span>我的</span>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    <script>
+        var uls = document.getElementsByClassName('uls')[0];
+        var uuls = document.getElementsByClassName('uuls')[0];
+        var data = ["自行车", "人身装备", "车身装备"];
+        var data1 = [{
+        title: ["产品"],
+        content: [{
+            img: "../image/tu1.png",
+            name: "后街",
+        }, {
+            img: "../image/tu2.png",
+            name: "百花",
+        }, {
+            img: "../image/tu3.png",
+            name: "美术馆",
+        }, {
+            img: "../image/tu4.png",
+            name: "后街lite",
+        }, {
+            img: "../image/tu5.png",
+            name: "后街",
+            name1: "周年纪念版",
+        }, {
+            img: "../image/tu6.png",
+            name: "银河 Gaiaxy",
+        }, {
+            img: "../image/tu7.png",
+            name: "后街 Mini",
+            name1: "单速版",
+        }, {
+            img: "../image/tu8.png",
+            name: "后街 Mini",
+            name1: "内三速版",
+        }, {
+            img: "../image/tu9.png",
+            name: "后街 Mini Road",
+        }]
+    }]
+        var html = '';
+        for(var i = 0; i < data.length; i++){
+            html += `
+                    <li class='${i == 0 ? 'active' : ''}'>${data[i]}</li>
+                    `
+        }
+        uls.innerHTML = html;
+
+        var uls_lis = document.querySelectorAll('.uls li');
+
+        uls.addEventListener('click',function(e){
+            var target = event.target;
+            if(target.nodeName === 'LI'){
+                for(var i = 0; i < uls_lis.length; i++){
+                    uls_lis[i].className = '';
+                }
+                target.className = 'active';
+            }
+        })
+        
+        
+        for(var i in data1){
+            var lis = '';
+            var dacon = data1[i].content;
+            for(var i = 0; i < dacon.length; i++){
+                lis += `
+                    <li>
+                        <img src="${dacon[i].img}" alt="">
+                        <span>${dacon[i].name}</span>
+                        <p>${dacon[i].name1 ? dacon[i].name1 : ''}</p>
+                    </li>    
+                    `
+            }
+            uuls.innerHTML = lis;
+            
+        }
+    
+    </script>
+
+</body>
+
+</html>

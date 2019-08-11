@@ -1,0 +1,195 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#app header {
+  height: 0.96rem;
+  border-bottom: 0.02667rem solid #ccc;
+}
+
+#app header > img {
+  float: left;
+  width: 0.26667rem;
+  height: 0.48rem;
+  margin-left: 0.26667rem;
+  margin-top: 0.21333rem;
+  margin-right: 0.48rem;
+}
+
+#app header form {
+  width: 8.58667rem;
+  height: 0.74667rem;
+  display: block;
+  float: left;
+  background-color: #eeeeee;
+  margin-top: 0.13333rem;
+}
+
+#app header form > img {
+  float: left;
+  width: 0.42667rem;
+  height: 0.42667rem;
+  margin-left: 0.4rem;
+  margin-top: 0.13333rem;
+}
+
+#app header form input {
+  width: 7.2rem;
+  height: 0.74667rem;
+  border: none;
+  background-color: #eeeeee;
+  float: left;
+  outline: none;
+  margin-left: 0.4rem;
+}
+
+#app section {
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+
+#app section .left {
+  width: 2.13333rem;
+  background-color: #f8f8f8;
+  position: relative;
+  overflow: auto;
+}
+
+#app section .left ul li {
+  width: 2.13333rem;
+  height: 0.98667rem;
+  font-size: 0.37333rem;
+  text-align: center;
+  line-height: 0.98667rem;
+  border-left: 0.10667rem solid transparent;
+}
+
+#app section .left ul .active {
+  background-color: white;
+  border-left: 0.10667rem solid #ff4891;
+}
+
+#app section .right {
+  width: 7.86667rem;
+  height: 100%;
+  background-color: white;
+  overflow: auto;
+}
+
+#app section .right > img {
+  width: 7.06667rem;
+  height: 2.53333rem;
+  display: block;
+  margin-left: 0.37333rem;
+  margin-top: 0.37333rem;
+  margin-bottom: 0.8rem;
+}
+
+#app section .right .top {
+  width: 2.66667rem;
+  height: 0.32rem;
+  line-height: 0.32rem;
+  margin-left: 2.4rem;
+  margin-bottom: 1.13333rem;
+}
+
+#app section .right .top span {
+  display: block;
+  float: left;
+}
+
+#app section .right .top span:nth-of-type(1) {
+  width: 0.66667rem;
+  height: 0.02667rem;
+  background-color: #ccc;
+  margin-top: 0.10667rem;
+}
+
+#app section .right .top span:nth-of-type(2) {
+  font-size: 0.29333rem;
+  margin-left: 0.32rem;
+}
+
+#app section .right .top span:nth-of-type(3) {
+  width: 0.66667rem;
+  height: 0.02667rem;
+  float: right;
+  background-color: #ccc;
+  margin-top: 0.10667rem;
+}
+
+#app section .right ul {
+  width: 6.85333rem;
+  height: auto;
+  margin-left: 0.48rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#app section .right ul li {
+  width: 1.92rem;
+  height: 2.56rem;
+  margin-bottom: 0.82667rem;
+}
+
+#app section .right ul li img {
+  width: 1.92rem;
+  height: 1.26667rem;
+  display: block;
+}
+
+#app section .right ul li span {
+  display: block;
+  font-size: 0.32rem;
+  text-align: center;
+  margin-top: 0.26667rem;
+}
+
+#app section .right ul li p {
+  font-size: 0.32rem;
+  text-align: center;
+}
+
+#app footer {
+  height: 1.29333rem;
+  border-top: 0.01333rem solid #e6e6e6;
+}
+
+#app footer ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#app footer ul li {
+  display: flex;
+  align-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.29333rem;
+}
+
+#app footer ul li img {
+  width: 0.6rem;
+  height: 0.6rem;
+}
+
+#app footer ul li span {
+  font-size: 0.32rem;
+}

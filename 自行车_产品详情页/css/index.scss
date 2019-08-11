@@ -1,0 +1,104 @@
+@function px2rem($px) {
+    @return $px / 75 * 1rem;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    header {
+        height: px2rem(105);
+        box-shadow: 0, 0, 16, 0, #ccc;
+        border-bottom: px2rem(2) solid #ccc;
+        &>img {
+            width: px2rem(65);
+            height: px2rem(52);
+            float: left;
+            margin-top: px2rem(25);
+            margin-left: px2rem(35);
+            margin-right: px2rem(124);
+        }
+        &>span {
+            float: left;
+            &:nth-of-type(1) {
+                font-size: px2rem(42);
+                margin-top: px2rem(29);
+                margin-right: px2rem(77);
+            }
+            &:nth-of-type(2) {
+                font-size: px2rem(26);
+                width: px2rem(134);
+                height: px2rem(66);
+                border-radius: px2rem(66);
+                background-color: #ffcb05;
+                color: #000;
+                line-height: px2rem(66);
+                text-align: center;
+                display: block;
+                margin-top: px2rem(17);
+            }
+        }
+    }
+    section {
+        flex: 1;
+        overflow: auto;
+        &>img {
+            width: px2rem(685);
+            height: px2rem(446);
+            display: block;
+            margin: 0 auto;
+            margin-top: px2rem(66);
+        }
+        &>p {
+            display: block;
+            width: px2rem(560);
+            height: px2rem(120);
+            margin-left: px2rem(84);
+            font-size: px2rem(30);
+            text-align: center;
+            color: #7e7e7e;
+            margin-bottom: px2rem(44);
+        }
+        &>span {
+            display: block;
+            &:nth-of-type(1) {
+                font-size: px2rem(62);
+                margin-left: px2rem(144);
+                margin-top: px2rem(66);
+                margin-bottom: px2rem(28);
+            }
+            &:nth-of-type(2) {
+                font-size: px2rem(36);
+                margin-left: px2rem(197);
+                margin-bottom: px2rem(44);
+            }
+            &:nth-of-type(3) {
+                font-size: px2rem(35);
+                margin-left: px2rem(322);
+                margin-bottom: px2rem(30);
+            }
+            &:nth-of-type(4) {
+                font-size: px2rem(24);
+                width: px2rem(220);
+                height: px2rem(77);
+                line-height: px2rem(77);
+                text-align: center;
+                margin-left: px2rem(264);
+                background-color: #ffcb05;
+                border-radius: px2rem(77);
+            }
+        }
+    }
+}
